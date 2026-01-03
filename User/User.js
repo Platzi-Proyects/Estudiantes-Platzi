@@ -1,17 +1,8 @@
-console.log("HOLA")
-
 class User {
     // Clases protegidas
     #email
     #password
-    constructor() {
-        this.name = null
-        this.#email = null
-        this.#password = null
-        this.role = null
-    }
-
-    createUser(name, email, password, role){
+    constructor(name, email, password, role) {
         this.name = name
         this.#email = email
         this.#password = password
@@ -24,17 +15,30 @@ class User {
         }else{
             console.log("Contraseña correcta")
         }
-
     }
-    logout(validation){
+
+    logout(){
         this.#email = null
         this.#password = null
         this.name = null
         this.role = null
     }
-    updateProfile(newName){
-        this.name = newName
+
+    get email() {
+        return this.#email
+    }
+
+    set email(newEmail) {
+        if (!newEmail.includes("@")) {
+            throw new Error("Invalid email")
+        }
+        this.#email = newEmail
+    }
+
+    set password(newPassword) {
+        if (newPassword.length < 6) {
+            throw new Error("Weak password")
+        }
+        this.#password = newPassword
     }
 }
-
-const users = new User()
