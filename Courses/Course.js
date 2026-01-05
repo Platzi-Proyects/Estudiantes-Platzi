@@ -1,8 +1,5 @@
 export class Course{
-    constructor({
-        name = null,
-        teacher = null
-                }) {
+    constructor(name,teacher) {
         this.name = name
         this.classes = []
         this.teacher = teacher
@@ -12,6 +9,14 @@ export class Course{
         const newItem = new Classes({name, duration})
         this.classes.push(newItem)
         console.log(`New classes add: ${newItem}`)
+    }
+
+    aboutThisCourse(){
+        return(
+            this.name,
+            this.teacher,
+            this.classes.length
+        )
     }
 }
 
