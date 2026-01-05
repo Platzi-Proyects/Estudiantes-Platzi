@@ -1,6 +1,6 @@
-import {User} from "./User";
+import {User} from "./User.js";
 
-class Studen extends User{
+export class Studen extends User{
     constructor({name, email, password, role = "Student"}) {
         super(name, email, password, role);
     }
@@ -13,7 +13,7 @@ class Studen extends User{
         classItem.addComment(this, text)
     }
 
-    aboutThisCourse(course) {
+    aboutThisCo(course) {
         course.aboutThisCourse()
     }
 }

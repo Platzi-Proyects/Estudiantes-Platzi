@@ -1,7 +1,7 @@
-import {User} from "./User";
-import {Category} from "../Courses/Course";
+import {User} from "./User.js";
+import {Category} from "../Courses/Course.js";
 
-class Teacher extends User{
+export class Teacher extends User{
     constructor({name, email, password, role = "Teacher"}) {
         super(name,email,password, role);
     }
