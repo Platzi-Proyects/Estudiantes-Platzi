@@ -21,7 +21,7 @@ export class Category {
     }
 }
 
-class Course {
+export class Course {
     constructor(name, teacher) {
         this.name = name
         this.teacher = teacher // guardas la instancia
@@ -48,7 +48,7 @@ class Course {
     }
 }
 
-class ClassItem {
+export class ClassItem {
     constructor(name, duration) {
         this.name = name
         this.duration = duration
