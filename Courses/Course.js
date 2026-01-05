@@ -24,11 +24,19 @@ export class Category {
 class Course {
     constructor(name, teacher) {
         this.name = name
-        this.teacher = teacher.name
+        this.teacher = teacher // guardas la instancia
         this.classes = []
     }
 
-    newClasses(name, duration) {
+    newClasses(name, duration, user) {
+        if (user.role !== "Teacher") {
+            throw new Error("Only teachers can create class")
+        }
+
+        if (user !== this.teacher) {
+            throw new Error("Only the course teacher can create classes")
+        }
+
         const newItem = new ClassItem(name, duration)
         this.classes.push(newItem)
     }
