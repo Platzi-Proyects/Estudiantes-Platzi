@@ -1,12 +1,16 @@
-class Category{
-    constructor(id,name) {
+export class Category {
+    constructor(id, name) {
         this.id = id
         this.name = name
         this.courses = []
     }
 
-    addCourse(name,teacher){
-        const newCourse = new Course(name,teacher)
+    addCourse(name, teacher) {
+        if (teacher.role !== "Teacher") {
+            throw new Error("Only teachers can create courses")
+        }
+
+        const newCourse = new Course(name, teacher)
         this.courses.push(newCourse)
     }
 
@@ -17,44 +21,44 @@ class Category{
     }
 }
 
-class Course{
-    constructor(name,teacher) {
+class Course {
+    constructor(name, teacher) {
         this.name = name
+        this.teacher = teacher.name
         this.classes = []
-        this.teacher = teacher
     }
 
-    newClasses(name, duration){
-        const newItem = new Classes({name, duration})
+    newClasses(name, duration) {
+        const newItem = new ClassItem(name, duration)
         this.classes.push(newItem)
-        console.log(`New classes add: ${newItem}`)
     }
 
-    aboutThisCourse(){
-        return(console.log(`this coruse: Teacher: ${this.teacher} Name: ${this.name} Total Class: ${this.classes.length}`))
+    aboutThisCourse() {
+        console.log(
+            `Teacher: ${this.teacher} | Course: ${this.name} | Total classes: ${this.classes.length}`
+        )
     }
 }
 
 class ClassItem {
-    constructor(name, duration){
+    constructor(name, duration) {
         this.name = name
         this.duration = duration
         this.comments = []
     }
 
-    addComment(userName, role, text) {
-        const newComment = new Comment(userName, role, text)
+    addComment(user, text) {
+        const newComment = new Comment(user, text)
         this.comments.push(newComment)
     }
 }
 
 class Comment {
-    constructor(userName, role, text) {
-        this.userName = userName
-        this.role = role
+    constructor(user, text) {
+        this.userName = user.name
+        this.role = user.role
         this.text = text
         this.date = new Date()
     }
 }
-
 
